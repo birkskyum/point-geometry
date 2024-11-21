@@ -182,8 +182,8 @@ Point.prototype = {
    * @return {number} distance
    */
   distSqr(p) {
-    const dx = p.x - this.x,
-      dy = p.y - this.y;
+    const dx = p.x - this.x;
+    const dy = p.y - this.y;
     return dx * dx + dy * dy;
   },
 
@@ -230,8 +230,8 @@ Point.prototype = {
 
   /** @param {[number, number, number, number]} m */
   _matMult(m) {
-    const x = m[0] * this.x + m[1] * this.y,
-      y = m[2] * this.x + m[3] * this.y;
+    const x = m[0] * this.x + m[1] * this.y;
+    const y = m[2] * this.x + m[3] * this.y;
     this.x = x;
     this.y = y;
     return this;
@@ -293,10 +293,10 @@ Point.prototype = {
 
   /** @param {number} angle */
   _rotate(angle) {
-    const cos = Math.cos(angle),
-      sin = Math.sin(angle),
-      x = cos * this.x - sin * this.y,
-      y = sin * this.x + cos * this.y;
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    const x = cos * this.x - sin * this.y;
+    const y = sin * this.x + cos * this.y;
     this.x = x;
     this.y = y;
     return this;
@@ -307,10 +307,10 @@ Point.prototype = {
    * @param {Point} p
    */
   _rotateAround(angle, p) {
-    const cos = Math.cos(angle),
-      sin = Math.sin(angle),
-      x = p.x + cos * (this.x - p.x) - sin * (this.y - p.y),
-      y = p.y + sin * (this.x - p.x) + cos * (this.y - p.y);
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+    const x = p.x + cos * (this.x - p.x) - sin * (this.y - p.y);
+    const y = p.y + sin * (this.x - p.x) + cos * (this.y - p.y);
     this.x = x;
     this.y = y;
     return this;
@@ -336,7 +336,7 @@ Point.prototype = {
  * // is equivalent to
  * var point = new Point(0, 1);
  */
-Point.convert = function (p) {
+Point.convert = (p) => {
   if (p instanceof Point) {
     return /** @type {Point} */ (p);
   }
