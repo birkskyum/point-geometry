@@ -1,5 +1,5 @@
 import { assertEquals } from "jsr:@std/assert";
-import Point from "./index.js";
+import Point from "./index.ts";
 
 Deno.test(".convert", () => {
   assertEquals(
