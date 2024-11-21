@@ -1,11 +1,11 @@
-# @mapbox/point-geometry
+# jsr:@birkskyum/point-geometry
 
 A `Point` class for representing point geometry with useful utility methods.
 
 ## Installation
 
 ```sh
-$ npm install @mapbox/point-geometry
+$ npm install jsr:@birkskyum/point-geometry
 ```
 
 ## API
