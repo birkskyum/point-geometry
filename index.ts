@@ -11,10 +11,10 @@
  */
 export default class Point {
 
-  x;
-  y;
+  x: number;
+  y: number;
 
-  constructor(x, y) {
+  constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
   }
@@ -24,7 +24,7 @@ export default class Point {
    * without affecting the old one.
    * @return {Point} the clone
    */
-  clone() {
+  clone(): Point {
     return new Point(this.x, this.y);
   }
 
@@ -34,7 +34,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {Point} output point
    */
-  add(p) {
+  add(p: Point): Point {
     return this.clone()._add(p);
   }
 
@@ -44,7 +44,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {Point} output point
    */
-  sub(p) {
+  sub(p: Point): Point {
     return this.clone()._sub(p);
   }
 
@@ -54,7 +54,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {Point} output point
    */
-  multByPoint(p) {
+  multByPoint(p: Point): Point {
     return this.clone()._multByPoint(p);
   }
 
@@ -64,7 +64,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {Point} output point
    */
-  divByPoint(p) {
+  divByPoint(p: Point): Point {
     return this.clone()._divByPoint(p);
   }
 
@@ -74,7 +74,7 @@ export default class Point {
    * @param {number} k factor
    * @return {Point} output point
    */
-  mult(k) {
+  mult(k: number): Point {
     return this.clone()._mult(k);
   }
 
@@ -84,7 +84,7 @@ export default class Point {
    * @param {number} k factor
    * @return {Point} output point
    */
-  div(k) {
+  div(k: number): Point {
     return this.clone()._div(k);
   }
 
@@ -94,7 +94,7 @@ export default class Point {
    * @param {number} a angle to rotate around, in radians
    * @return {Point} output point
    */
-  rotate(a) {
+  rotate(a: number): Point {
     return this.clone()._rotate(a);
   }
 
@@ -105,7 +105,7 @@ export default class Point {
    * @param {Point} p Point to rotate around
    * @return {Point} output point
    */
-  rotateAround(a, p) {
+  rotateAround(a: number, p: Point): Point {
     return this.clone()._rotateAround(a, p);
   }
 
@@ -114,7 +114,7 @@ export default class Point {
    * @param {[number, number, number, number]} m transformation matrix
    * @return {Point} output point
    */
-  matMult(m) {
+  matMult(m: [number, number, number, number]): Point {
     return this.clone()._matMult(m);
   }
 
@@ -125,7 +125,7 @@ export default class Point {
    * point to the 0, 0 coordinate will be the same as before.
    * @return {Point} unit vector point
    */
-  unit() {
+  unit(): Point {
     return this.clone()._unit();
   }
 
@@ -135,7 +135,7 @@ export default class Point {
    * coordinate multiplied by -1
    * @return {Point} perpendicular point
    */
-  perp() {
+  perp(): Point {
     return this.clone()._perp();
   }
 
@@ -144,7 +144,7 @@ export default class Point {
    * rounded to integers.
    * @return {Point} rounded point
    */
-  round() {
+  round(): Point {
     return this.clone()._round();
   }
 
@@ -154,7 +154,7 @@ export default class Point {
    * coordinates.
    * @return {number} magnitude
    */
-  mag() {
+  mag(): number {
     return Math.sqrt(this.x * this.x + this.y * this.y);
   }
 
@@ -164,7 +164,7 @@ export default class Point {
    * @param {Point} other the other point
    * @return {boolean} whether the points are equal
    */
-  equals(other) {
+  equals(other: Point): boolean {
     return this.x === other.x && this.y === other.y;
   }
 
@@ -173,7 +173,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {number} distance
    */
-  dist(p) {
+  dist(p: Point): number {
     return Math.sqrt(this.distSqr(p));
   }
 
@@ -184,7 +184,7 @@ export default class Point {
    * @param {Point} p the other point
    * @return {number} distance
    */
-  distSqr(p) {
+  distSqr(p: Point): number {
     const dx = p.x - this.x;
     const dy = p.y - this.y;
     return dx * dx + dy * dy;
@@ -195,7 +195,7 @@ export default class Point {
    * coordinates.
    * @return {number} angle
    */
-  angle() {
+  angle(): number {
     return Math.atan2(this.y, this.x);
   }
 
@@ -204,7 +204,7 @@ export default class Point {
    * @param {Point} b the other point
    * @return {number} angle
    */
-  angleTo(b) {
+  angleTo(b: Point): number {
     return Math.atan2(this.y - b.y, this.x - b.x);
   }
 
@@ -213,7 +213,7 @@ export default class Point {
    * @param {Point} b the other point
    * @return {number} angle
    */
-  angleWith(b) {
+  angleWith(b: Point): number {
     return this.angleWithSep(b.x, b.y);
   }
 
@@ -224,7 +224,7 @@ export default class Point {
    * @param {number} y the y-coordinate
    * @return {number} the angle in radians
    */
-  angleWithSep(x, y) {
+  angleWithSep(x: number, y: number): number {
     return Math.atan2(
       this.x * y - this.y * x,
       this.x * x + this.y * y
@@ -232,7 +232,7 @@ export default class Point {
   }
 
   /** @param {[number, number, number, number]} m */
-  _matMult(m) {
+  _matMult(m: [number, number, number, number]): Point {
     const x = m[0] * this.x + m[1] * this.y;
     const y = m[2] * this.x + m[3] * this.y;
     this.x = x;
@@ -241,53 +241,53 @@ export default class Point {
   }
 
   /** @param {Point} p */
-  _add(p) {
+  _add(p: Point): Point {
     this.x += p.x;
     this.y += p.y;
     return this;
   }
 
   /** @param {Point} p */
-  _sub(p) {
+  _sub(p: Point): Point {
     this.x -= p.x;
     this.y -= p.y;
     return this;
   }
 
   /** @param {number} k */
-  _mult(k) {
+  _mult(k: number): Point {
     this.x *= k;
     this.y *= k;
     return this;
   }
 
   /** @param {number} k */
-  _div(k) {
+  _div(k: number): Point {
     this.x /= k;
     this.y /= k;
     return this;
   }
 
   /** @param {Point} p */
-  _multByPoint(p) {
+  _multByPoint(p: Point): Point {
     this.x *= p.x;
     this.y *= p.y;
     return this;
   }
 
   /** @param {Point} p */
-  _divByPoint(p) {
+  _divByPoint(p: Point): Point {
     this.x /= p.x;
     this.y /= p.y;
     return this;
   }
 
-  _unit() {
+  _unit(): Point {
     this._div(this.mag());
     return this;
   }
 
-  _perp() {
+  _perp(): Point {
     const y = this.y;
     this.y = this.x;
     this.x = -y;
@@ -295,7 +295,7 @@ export default class Point {
   }
 
   /** @param {number} angle */
-  _rotate(angle) {
+  _rotate(angle: number): Point {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
     const x = cos * this.x - sin * this.y;
@@ -309,7 +309,7 @@ export default class Point {
    * @param {number} angle
    * @param {Point} p
    */
-  _rotateAround(angle, p) {
+  _rotateAround(angle: number, p: Point): Point {
     const cos = Math.cos(angle);
     const sin = Math.sin(angle);
     const x = p.x + cos * (this.x - p.x) - sin * (this.y - p.y);
@@ -319,7 +319,7 @@ export default class Point {
     return this;
   }
 
-  _round() {
+  _round(): Point {
     this.x = Math.round(this.x);
     this.y = Math.round(this.y);
     return this;
@@ -336,7 +336,7 @@ export default class Point {
    * // is equivalent to
    * var point = new Point(0, 1);
    */
-  static convert(p) {
+  static convert(p: Point | [number, number] | {x: number, y: number}): Point {
     if (p instanceof Point) {
       return /** @type {Point} */ (p);
     }
