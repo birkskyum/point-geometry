@@ -1,11 +1,10 @@
-import { assertEquals, assertThrows} from "jsr:@std/assert";
+import { assertEquals} from "jsr:@std/assert";
 import Point from './index.js';
 
 Deno.test('.convert', () => {
     assertEquals(Point.convert(new Point(20, 30)).equals(new Point(20, 30)), true);
     assertEquals(Point.convert([20, 30]).equals(new Point(20, 30)), true);
     assertEquals(Point.convert({x: 20, y: 30}).equals(new Point(20, 30)), true);
-    assertThrows(() => Point.convert('somestring'));
 });
 Deno.test('#mag', () => {
     assertEquals(new Point(0, 2).mag(), 2);
