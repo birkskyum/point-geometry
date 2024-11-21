@@ -9,12 +9,12 @@
  * @example
  * const point = new Point(-77, 38);
  */
-export default function Point(x, y) {
-  this.x = x;
-  this.y = y;
-}
+export default class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 
-Point.prototype = {
   /**
    * Clone this point, returning a new point that can be modified
    * without affecting the old one.
@@ -22,7 +22,7 @@ Point.prototype = {
    */
   clone() {
     return new Point(this.x, this.y);
-  },
+  }
 
   /**
    * Add this point's x & y coordinates to another point,
@@ -32,7 +32,7 @@ Point.prototype = {
    */
   add(p) {
     return this.clone()._add(p);
-  },
+  }
 
   /**
    * Subtract this point's x & y coordinates to from point,
@@ -42,7 +42,7 @@ Point.prototype = {
    */
   sub(p) {
     return this.clone()._sub(p);
-  },
+  }
 
   /**
    * Multiply this point's x & y coordinates by point,
@@ -52,7 +52,7 @@ Point.prototype = {
    */
   multByPoint(p) {
     return this.clone()._multByPoint(p);
-  },
+  }
 
   /**
    * Divide this point's x & y coordinates by point,
@@ -62,7 +62,7 @@ Point.prototype = {
    */
   divByPoint(p) {
     return this.clone()._divByPoint(p);
-  },
+  }
 
   /**
    * Multiply this point's x & y coordinates by a factor,
@@ -72,7 +72,7 @@ Point.prototype = {
    */
   mult(k) {
     return this.clone()._mult(k);
-  },
+  }
 
   /**
    * Divide this point's x & y coordinates by a factor,
@@ -82,7 +82,7 @@ Point.prototype = {
    */
   div(k) {
     return this.clone()._div(k);
-  },
+  }
 
   /**
    * Rotate this point around the 0, 0 origin by an angle a,
@@ -92,7 +92,7 @@ Point.prototype = {
    */
   rotate(a) {
     return this.clone()._rotate(a);
-  },
+  }
 
   /**
    * Rotate this point around p point by an angle a,
@@ -103,7 +103,7 @@ Point.prototype = {
    */
   rotateAround(a, p) {
     return this.clone()._rotateAround(a, p);
-  },
+  }
 
   /**
    * Multiply this point by a 4x1 transformation matrix
@@ -112,7 +112,7 @@ Point.prototype = {
    */
   matMult(m) {
     return this.clone()._matMult(m);
-  },
+  }
 
   /**
    * Calculate this point but as a unit vector from 0, 0, meaning
@@ -123,7 +123,7 @@ Point.prototype = {
    */
   unit() {
     return this.clone()._unit();
-  },
+  }
 
   /**
    * Compute a perpendicular point, where the new y coordinate
@@ -133,7 +133,7 @@ Point.prototype = {
    */
   perp() {
     return this.clone()._perp();
-  },
+  }
 
   /**
    * Return a version of this point with the x & y coordinates
@@ -142,7 +142,7 @@ Point.prototype = {
    */
   round() {
     return this.clone()._round();
-  },
+  }
 
   /**
    * Return the magnitude of this point: this is the Euclidean
@@ -152,7 +152,7 @@ Point.prototype = {
    */
   mag() {
     return Math.sqrt(this.x * this.x + this.y * this.y);
-  },
+  }
 
   /**
    * Judge whether this point is equal to another point, returning
@@ -161,9 +161,8 @@ Point.prototype = {
    * @return {boolean} whether the points are equal
    */
   equals(other) {
-    return this.x === other.x &&
-      this.y === other.y;
-  },
+    return this.x === other.x && this.y === other.y;
+  }
 
   /**
    * Calculate the distance from this point to another point
@@ -172,7 +171,7 @@ Point.prototype = {
    */
   dist(p) {
     return Math.sqrt(this.distSqr(p));
-  },
+  }
 
   /**
    * Calculate the distance from this point to another point,
@@ -185,7 +184,7 @@ Point.prototype = {
     const dx = p.x - this.x;
     const dy = p.y - this.y;
     return dx * dx + dy * dy;
-  },
+  }
 
   /**
    * Get the angle from the 0, 0 coordinate to this point, in radians
@@ -194,7 +193,7 @@ Point.prototype = {
    */
   angle() {
     return Math.atan2(this.y, this.x);
-  },
+  }
 
   /**
    * Get the angle from this point to another point, in radians
@@ -203,7 +202,7 @@ Point.prototype = {
    */
   angleTo(b) {
     return Math.atan2(this.y - b.y, this.x - b.x);
-  },
+  }
 
   /**
    * Get the angle between this point and another point, in radians
@@ -212,7 +211,7 @@ Point.prototype = {
    */
   angleWith(b) {
     return this.angleWithSep(b.x, b.y);
-  },
+  }
 
   /**
    * Find the angle of the two vectors, solving the formula for
@@ -224,9 +223,9 @@ Point.prototype = {
   angleWithSep(x, y) {
     return Math.atan2(
       this.x * y - this.y * x,
-      this.x * x + this.y * y,
+      this.x * x + this.y * y
     );
-  },
+  }
 
   /** @param {[number, number, number, number]} m */
   _matMult(m) {
@@ -235,61 +234,61 @@ Point.prototype = {
     this.x = x;
     this.y = y;
     return this;
-  },
+  }
 
   /** @param {Point} p */
   _add(p) {
     this.x += p.x;
     this.y += p.y;
     return this;
-  },
+  }
 
   /** @param {Point} p */
   _sub(p) {
     this.x -= p.x;
     this.y -= p.y;
     return this;
-  },
+  }
 
   /** @param {number} k */
   _mult(k) {
     this.x *= k;
     this.y *= k;
     return this;
-  },
+  }
 
   /** @param {number} k */
   _div(k) {
     this.x /= k;
     this.y /= k;
     return this;
-  },
+  }
 
   /** @param {Point} p */
   _multByPoint(p) {
     this.x *= p.x;
     this.y *= p.y;
     return this;
-  },
+  }
 
   /** @param {Point} p */
   _divByPoint(p) {
     this.x /= p.x;
     this.y /= p.y;
     return this;
-  },
+  }
 
   _unit() {
     this._div(this.mag());
     return this;
-  },
+  }
 
   _perp() {
     const y = this.y;
     this.y = this.x;
     this.x = -y;
     return this;
-  },
+  }
 
   /** @param {number} angle */
   _rotate(angle) {
@@ -300,7 +299,7 @@ Point.prototype = {
     this.x = x;
     this.y = y;
     return this;
-  },
+  }
 
   /**
    * @param {number} angle
@@ -314,37 +313,35 @@ Point.prototype = {
     this.x = x;
     this.y = y;
     return this;
-  },
+  }
 
   _round() {
     this.x = Math.round(this.x);
     this.y = Math.round(this.y);
     return this;
-  },
+  }
 
-  constructor: Point,
-};
-
-/**
- * Construct a point from an array if necessary, otherwise if the input
- * is already a Point, return it unchanged.
- * @param {Point | [number, number] | {x: number, y: number}} p input value
- * @return {Point} constructed point.
- * @example
- * // this
- * var point = Point.convert([0, 1]);
- * // is equivalent to
- * var point = new Point(0, 1);
- */
-Point.convert = (p) => {
-  if (p instanceof Point) {
-    return /** @type {Point} */ (p);
+  /**
+   * Construct a point from an array if necessary, otherwise if the input
+   * is already a Point, return it unchanged.
+   * @param {Point | [number, number] | {x: number, y: number}} p input value
+   * @return {Point} constructed point.
+   * @example
+   * // this
+   * var point = Point.convert([0, 1]);
+   * // is equivalent to
+   * var point = new Point(0, 1);
+   */
+  static convert(p) {
+    if (p instanceof Point) {
+      return /** @type {Point} */ (p);
+    }
+    if (Array.isArray(p)) {
+      return new Point(+p[0], +p[1]);
+    }
+    if (p.x !== undefined && p.y !== undefined) {
+      return new Point(+p.x, +p.y);
+    }
+    throw new Error("Expected [x, y] or {x, y} point format");
   }
-  if (Array.isArray(p)) {
-    return new Point(+p[0], +p[1]);
-  }
-  if (p.x !== undefined && p.y !== undefined) {
-    return new Point(+p.x, +p.y);
-  }
-  throw new Error("Expected [x, y] or {x, y} point format");
-};
+}
