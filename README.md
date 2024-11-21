@@ -1,3 +1,6 @@
+[![JSR](https://jsr.io/badges/@birkskyum/point-geometry)](https://jsr.io/@birkskyum/point-geometry)
+
+
 # jsr:@birkskyum/point-geometry
 
 A `Point` class for representing point geometry with useful utility methods.
